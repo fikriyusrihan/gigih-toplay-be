@@ -1,7 +1,4 @@
 class ProductService {
-  /**
-   * @param {Product} product
-   */
   constructor(product) {
     this.product = product;
 
