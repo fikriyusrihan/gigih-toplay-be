@@ -1,18 +1,40 @@
-import express from 'express';
-import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from './docs/index.js';
+/* eslint-disable no-console */
+import mongoose from 'mongoose';
+import app from './infrastructures/express/index.js';
 import config from './utils/config.js';
 
-const app = express();
-app.use(express.json());
+console.log('Starting server...');
 
-app.use(
-  '/api-docs',
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument),
-);
+let server;
+mongoose.connect(config.MONGO_URI).then(() => {
+  console.log('Connected to MongoDB');
+  server = app.listen(config.PORT, () => {
+    console.log(`Server listening to port ${config.PORT}`);
+  });
+});
 
-app.listen(config.PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server listening to port ${config.PORT}`);
+const exitHandler = () => {
+  if (server) {
+    server.close(() => {
+      console.info('Server closed');
+      process.exit(1);
+    });
+  } else {
+    process.exit(1);
+  }
+};
+
+const unexpectedErrorHandler = (error) => {
+  console.error(error);
+  exitHandler();
+};
+
+process.on('uncaughtException', unexpectedErrorHandler);
+process.on('unhandledRejection', unexpectedErrorHandler);
+
+process.on('SIGTERM', () => {
+  console.info('SIGTERM received');
+  if (server) {
+    server.close();
+  }
 });
