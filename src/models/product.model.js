@@ -1,17 +1,31 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
+import toJSON from './plugins/toJSON.plugin.js';
 
 const { Schema } = mongoose;
 
 const productSchema = new Schema({
-  title: String,
-  description: String,
-  price: Number,
-  image: String,
-  url: String,
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  image_url: String,
+  product_url: {
+    type: String,
+    required: true,
+  },
 });
 
 productSchema.plugin(mongoosePaginate);
+productSchema.plugin(toJSON);
 
 const Product = mongoose.model('Product', productSchema);
 
@@ -27,8 +41,8 @@ export default Product;
  *        - title
  *        - description
  *        - price
- *        - images
- *        - url
+ *        - images_url
+ *        - product_url
  *      properties:
  *        id:
  *          type: string
@@ -42,10 +56,10 @@ export default Product;
  *        price:
  *          type: number
  *          description: The product's price
- *        image:
+ *        image_url:
  *          type: string
  *          description: The product's image
- *        url:
+ *        product_url:
  *          type: string
  *          description: The product's url
  *      example:

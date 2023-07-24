@@ -24,13 +24,16 @@ class ProductController {
   });
 
   handleGetProducts = handlerWrapper(async (req, res) => {
-    // TODO: Manage query and options for pagination
-    const { query } = req;
-    const products = await this.productService.queryProducts(query);
+    const { title, page, limit } = req.query;
+    const result = await this.productService.queryProducts(
+      { title: { $regex: title, $options: 'i' } },
+      { page, limit },
+    );
+
     const response = {
       status: 'success',
       message: 'Products successfully retrieved',
-      data: products,
+      data: result,
     };
 
     res.status(httpStatus.OK).json(response);

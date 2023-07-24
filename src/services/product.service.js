@@ -14,7 +14,20 @@ class ProductService {
   }
 
   async queryProducts(filter, options) {
-    return this.product.paginate(filter, options);
+    const customLabels = {
+      docs: 'items',
+      totalDocs: 'totalItems',
+      pagingCounter: false,
+      hasPrevPage: false,
+      hasNextPage: false,
+      prevPage: false,
+      nextPage: false,
+    };
+
+    const result = await this.product.paginate(filter, { ...options, customLabels });
+    delete result.false;
+
+    return result;
   }
 
   async getProductById(productId) {
