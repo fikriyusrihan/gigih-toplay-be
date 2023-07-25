@@ -1,10 +1,12 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
+import toJSON from './plugins/toJSON.plugin.js';
 
 const { Schema } = mongoose;
 
 const videoSchema = new Schema({
   title: String,
-  url: String,
+  video_url: String,
   products: [
     {
       type: Schema.Types.ObjectId,
@@ -12,6 +14,9 @@ const videoSchema = new Schema({
     },
   ],
 });
+
+videoSchema.plugin(mongoosePaginate);
+videoSchema.plugin(toJSON);
 
 const Video = mongoose.model('Video', videoSchema);
 
@@ -25,7 +30,7 @@ export default Video;
  *       type: object
  *       required:
  *         - title
- *         - url
+ *         - video_url
  *         - products
  *       properties:
  *         id:
@@ -34,7 +39,7 @@ export default Video;
  *         title:
  *           type: string
  *           description: The video's title
- *         url:
+ *         video_url:
  *           type: string
  *           description: The video's url
  *         products:
@@ -45,6 +50,6 @@ export default Video;
  *       example:
  *         id: 5f8d0f4d7f4bba1d9c9bce1f
  *         title: Tokopedia
- *         url: https://www.youtube.com/watch?v=5Fb8xZiD4zI
+ *         video_url: https://www.youtube.com/watch?v=5Fb8xZiD4zI
  *         products: [5f8d0f4d7f4bba1d9c9bce1f, 5f8d0f4d7f4bba1d9c9bce1f]
  */
