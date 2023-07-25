@@ -53,7 +53,8 @@ class ProductService {
 
   async deleteProductById(productId) {
     const product = await this.getProductById(productId);
-    await product.remove();
+
+    await this.product.deleteOne({ _id: productId });
 
     return product;
   }
