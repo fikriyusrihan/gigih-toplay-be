@@ -1,3 +1,6 @@
+import httpStatus from 'http-status';
+import ApiError from '../utils/error/ApiError.js';
+
 class ProductService {
   constructor(product) {
     this.product = product;
@@ -31,28 +34,27 @@ class ProductService {
   }
 
   async getProductById(productId) {
-    return this.product.findById(productId);
+    const product = await this.product.findById(productId);
+    if (!product) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'The requested product was not found');
+    }
+
+    return product;
   }
 
   async updateProductById(productId, productBody) {
     const product = await this.getProductById(productId);
-    if (!product) {
-      // TODO : Improve error handling mechanism later
-      throw new Error('Product not found');
-    }
 
     Object.assign(product, productBody);
     await product.save();
+
     return product;
   }
 
   async deleteProductById(productId) {
     const product = await this.getProductById(productId);
-    if (!product) {
-      // TODO : Improve error handling mechanism later
-      throw new Error('Product not found');
-    }
     await product.remove();
+
     return product;
   }
 }
