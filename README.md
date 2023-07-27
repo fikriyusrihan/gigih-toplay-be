@@ -1,11 +1,11 @@
 # Tokopedia Play Clone API 🎶
 
 This is a simple API for Tokopedia Play Clone application. This API is built using Node.js and Express.
-This application is a part of Generasi GIGIH 3.0 Final Project submission at Midterm.
+This application is a part of Generasi GIGIH 3.0 Final Project submission at midterm.
 
 ## Run the Application ▶️
 
-This application requires Node.js and MongoDB to run. Make sure you have installed Node.js and npm on your computer, then do the following steps.
+This application requires Node.js and MongoDB to run. Make sure you have installed Node.js, MongoDB and npm on your computer, then do the following steps.
 
 ```bash
 # Move to the workspace directory
@@ -32,12 +32,9 @@ The database schema is built using MongoDB and Mongoose. The schema shown below.
 [![N|Solid](https://raw.githubusercontent.com/fikriyusrihan/gigih-toplay-be/master/gigih-toped-play.drawio.png?token=GHSAT0AAAAAABOKS3M2WBUFBBLIBDZ6L4DYZGCWFSA)]()
 
 There are 3 collections in the database, which are:
-- `videos` collection, which contains the video data.
-- `comments` collection, which contains the comment data.
-- `products` collection, which contains the product data.
-
-A video document may have many comments and products.
-A comment document may relate to one video document.
+- `videos` collection, which contains the video data. Every video document has a `products` field, which contains list of product's reference id. The reason why the product data is stored in the video document is to reduce the number of queries to the database as MongoDB's slogan "data that is accessed together, should be stored together".
+- `comments` collection, which contains the comment data. Every comment is related to one video document.
+- `products` collection, which contains the product data. Product data is stored separately from the video document because the product data is not always accessed together with the video data. I also try to avoid "unbounded documents" issue in MongoDB.
 
 ## Tools ⚒️
 
