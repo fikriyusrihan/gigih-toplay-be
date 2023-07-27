@@ -18,7 +18,19 @@ class VideoController {
   });
 
   handleGetVideos = handlerWrapper(async (req, res) => {
-    const { title, page, limit } = req.query;
+    let { title, page, limit } = req.query;
+
+    if (!title) {
+      title = '';
+    }
+
+    if (!page) {
+      page = 1;
+    }
+
+    if (!limit) {
+      limit = 10;
+    }
 
     const query = {};
     if (title) {

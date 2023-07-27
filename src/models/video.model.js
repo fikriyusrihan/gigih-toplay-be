@@ -32,12 +32,26 @@ export default Video;
  * @swagger
  * components:
  *   schemas:
+ *     VideoRequest:
+ *       type: object
+ *       required:
+ *         - title
+ *         - video_url
+ *       properties:
+ *         title:
+ *           type: string
+ *           description: The video's title
+ *         video_url:
+ *           type: string
+ *           description: The video's url
+ *       example:
+ *         title: Tokopedia
+ *         video_url: https://www.youtube.com/watch?v=5Fb8xZiD4zI
  *     Video:
  *       type: object
  *       required:
  *         - title
  *         - video_url
- *         - products
  *       properties:
  *         id:
  *           type: string

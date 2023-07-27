@@ -24,7 +24,20 @@ class ProductController {
   });
 
   handleGetProducts = handlerWrapper(async (req, res) => {
-    const { title, page, limit } = req.query;
+    let { title, page, limit } = req.query;
+
+    if (!title) {
+      title = '';
+    }
+
+    if (!page) {
+      page = 1;
+    }
+
+    if (!limit) {
+      limit = 10;
+    }
+
     const result = await this.productService.queryProducts(
       { title: { $regex: title, $options: 'i' } },
       { page, limit },

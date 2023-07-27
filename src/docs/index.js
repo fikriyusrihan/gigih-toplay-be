@@ -20,7 +20,7 @@ const options = {
   },
   apis: [
     './src/models/*.js',
-    './src/routes/api/v1/*.route.js',
+    './src/infrastructures/express/routes/*.route.js',
   ],
 };
 

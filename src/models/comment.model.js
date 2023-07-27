@@ -32,6 +32,22 @@ export default Comment;
  * @swagger
  * components:
  *  schemas:
+ *    CommentRequest:
+ *      type: object
+ *      required:
+ *        - username
+ *        - comment
+ *      properties:
+ *        username:
+ *          type: string
+ *          description: The username of the comment writer
+ *          example: tokopedia
+ *          required: true
+ *        comment:
+ *          type: string
+ *          description: The comment
+ *          example: Great product!
+ *          required: true
  *    Comment:
  *      type: object
  *      required:
