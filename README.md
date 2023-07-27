@@ -28,8 +28,16 @@ The documentation is built using Swagger for ExpressJS.
 
 ## Database Schema 📚
 
-The database schema is built using MongoDB and Mongoose. The schema shown below
-[]
+The database schema is built using MongoDB and Mongoose. The schema shown below.
+[![N|Solid](https://raw.githubusercontent.com/fikriyusrihan/gigih-toplay-be/master/gigih-toped-play.drawio.png?token=GHSAT0AAAAAABOKS3M2WBUFBBLIBDZ6L4DYZGCWFSA)]()
+
+There are 3 collections in the database, which are:
+- `videos` collection, which contains the video data.
+- `comments` collection, which contains the comment data.
+- `products` collection, which contains the product data.
+
+A video document may have many comments and products.
+A comment document may relate to one video document.
 
 ## Tools ⚒️
 
@@ -39,3 +47,9 @@ The database schema is built using MongoDB and Mongoose. The schema shown below
 - [Mongoose](https://mongoosejs.com/) (ODM)
 - [Swagger](https://swagger.io/) (API Documentation)
 - [Postman](https://www.postman.com/) (API Testing)
+
+## Possible Improvements 📈
+- Add authentication and authorization
+- Add unit testing
+- Implement WebSockets for real-time comments data update
+- Using Docker for containerization
