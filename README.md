@@ -17,9 +17,14 @@ git clone https://github.com/fikriyusrihan/gigih-toplay-be.git
 # Move to the application directory
 cd gigih-toplay-be
 
+# Install the dependencies
+npm install
+
 # Run the application
 node src/index.js
 ```
+
+The application will run on port 3000. You can change the port by changing the `PORT` variable in `.env` file.
 
 ## API Documentation 📑
 
