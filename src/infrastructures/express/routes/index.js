@@ -2,6 +2,7 @@ import express from 'express';
 import productRoute from './product.route.js';
 import videoRoute from './video.route.js';
 import videoProductsRoute from './video-products.route.js';
+import commentRoute from './comment.route.js';
 
 const router = express.Router();
 
@@ -15,8 +16,12 @@ const defaultRoutes = [
     route: videoRoute,
   },
   {
-    path: '/videos/:videoId/products',
+    path: '/videos',
     route: videoProductsRoute,
+  },
+  {
+    path: '/videos',
+    route: commentRoute,
   },
 ];
 

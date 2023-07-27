@@ -1,16 +1,28 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
+import toJSON from './plugins/toJSON.plugin.js';
 
 const { Schema } = mongoose;
 
 const commentSchema = new Schema({
-  username: String,
-  comment: String,
+  username: {
+    type: String,
+    required: true,
+  },
+  comment: {
+    type: String,
+    required: true,
+  },
   timestamp: String,
   videoId: {
     type: Schema.Types.ObjectId,
     ref: 'Video',
+    required: true,
   },
 });
+
+commentSchema.plugin(mongoosePaginate);
+commentSchema.plugin(toJSON);
 
 const Comment = mongoose.model('Comment', commentSchema);
 

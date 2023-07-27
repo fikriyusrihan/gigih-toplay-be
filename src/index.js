@@ -8,6 +8,7 @@ console.log('Starting server...');
 let server;
 mongoose.connect(config.MONGO_URI).then(() => {
   console.log('Connected to MongoDB');
+  mongoose.set('debug', true);
   server = app.listen(config.PORT, () => {
     console.log(`Server listening to port ${config.PORT}`);
   });

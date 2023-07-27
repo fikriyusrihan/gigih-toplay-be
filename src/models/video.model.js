@@ -5,8 +5,14 @@ import toJSON from './plugins/toJSON.plugin.js';
 const { Schema } = mongoose;
 
 const videoSchema = new Schema({
-  title: String,
-  video_url: String,
+  title: {
+    type: String,
+    required: true,
+  },
+  video_url: {
+    type: String,
+    required: true,
+  },
   products: [
     {
       type: Schema.Types.ObjectId,

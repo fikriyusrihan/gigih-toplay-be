@@ -53,7 +53,8 @@ class VideoService {
 
   async deleteVideoById(videoId) {
     const video = await this.getVideoById(videoId);
-    await video.remove();
+
+    await this.video.deleteOne({ _id: videoId });
 
     return video;
   }
