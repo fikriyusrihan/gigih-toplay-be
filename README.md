@@ -1,6 +1,6 @@
 # Tokopedia Play Clone API 🎶
 
-This is a simple API for Tokopedia Play Clone application. This API is built using Node.js and Express.
+This is a simple RESTful API for Tokopedia Play Clone application. This API is built using Node.js and Express.
 This application is a part of Generasi GIGIH 3.0 Final Project submission at midterm.
 
 ## Run the Application ▶️
@@ -24,7 +24,8 @@ node src/index.js
 ## API Documentation 📑
 
 Access the API documentation at `http://localhost:3000/api/v1/docs` when the application is running.
-The documentation is built using Swagger for ExpressJS.
+The documentation is built using Swagger for ExpressJS. 
+The documentation contains the API endpoints, request body, response body, and example responses.
 
 ## Database Schema 📚
 
