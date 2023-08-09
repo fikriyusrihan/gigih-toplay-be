@@ -18,6 +18,8 @@ class CommentController {
       data: comment,
     };
 
+    req.app.get('io').to(videoId).emit('newComment', comment);
+
     res.status(httpStatus.CREATED).json(response);
   });
 

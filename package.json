@@ -29,6 +29,7 @@
     "http-status": "^1.6.2",
     "mongoose": "^7.4.0",
     "mongoose-paginate-v2": "^1.7.23",
+    "socket.io": "^4.7.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
   },
