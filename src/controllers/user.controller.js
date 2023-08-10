@@ -7,10 +7,11 @@ class UserController {
   constructor(userService) {
     this.userService = userService;
 
-    this.handleAuth = this.handleAuth.bind(this);
+    this.handlePostLogin = this.handlePostLogin.bind(this);
+    this.handlePostRegister = this.handlePostRegister.bind(this);
   }
 
-  handleAuth = handlerWrapper(async (req, res) => {
+  handlePostLogin = handlerWrapper(async (req, res) => {
     const { email, password } = req.body;
 
     const user = this.userService.getUserByEmail(email);
@@ -23,6 +24,32 @@ class UserController {
     const response = {
       status: 'success',
       message: 'User successfully authenticated',
+      data: { token },
+    };
+
+    res.status(httpStatus.OK).json(response);
+  });
+
+  handlePostRegister = handlerWrapper(async (req, res) => {
+    const { username, email, password } = req.body;
+
+    const existingUser = await this.userService.getUserByEmail(email);
+    if (existingUser) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Email already registered');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 8);
+
+    const user = await this.userService.createUser({
+      username,
+      email,
+      password: hashedPassword,
+    });
+
+    const token = user.generateAuthToken();
+    const response = {
+      status: 'success',
+      message: 'User successfully registered',
       data: { token },
     };
 

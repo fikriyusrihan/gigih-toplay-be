@@ -16,6 +16,10 @@ class UserService {
 
     return user;
   }
+
+  async createUser(userBody) {
+    return this.user.create(userBody);
+  }
 }
 
 export default UserService;

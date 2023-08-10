@@ -3,10 +3,15 @@ import productRoute from './product.route.js';
 import videoRoute from './video.route.js';
 import videoProductsRoute from './video-products.route.js';
 import commentRoute from './comment.route.js';
+import userRoute from './user.route.js';
 
 const router = express.Router();
 
 const defaultRoutes = [
+  {
+    path: '/',
+    route: userRoute,
+  },
   {
     path: '/products',
     route: productRoute,
