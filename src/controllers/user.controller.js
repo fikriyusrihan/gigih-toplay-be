@@ -63,7 +63,13 @@ class UserController {
 
   handleGetUser = handlerWrapper(async (req, res) => {
     const token = req.header('Authorization').replace('Bearer ', '');
-    const decodedToken = jwt.verify(token, config.JWT_SECRET);
+
+    let decodedToken;
+    try {
+      decodedToken = jwt.verify(token, config.JWT_SECRET);
+    } catch (error) {
+      throw new ApiError(httpStatus.UNAUTHORIZED, 'Invalid token');
+    }
 
     // eslint-disable-next-line no-underscore-dangle
     const user = await this.userService.getUserById(decodedToken._id);
