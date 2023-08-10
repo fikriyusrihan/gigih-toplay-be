@@ -47,9 +47,14 @@ The database schema is built using MongoDB and Mongoose. The schema shown below.
 [![N|Solid](https://raw.githubusercontent.com/fikriyusrihan/gigih-toplay-be/master/gigih-toped-play.drawio.png?token=GHSAT0AAAAAABOKS3M2WBUFBBLIBDZ6L4DYZGCWFSA)]()
 
 There are 3 collections in the database, which are:
-- `videos` collection, which contains the video data. Every video document has a `products` field, which contains list of product's reference oid. The reason why the product data is stored in the video document is to reduce the number of queries to the database as MongoDB's slogan "data that is accessed together, should be stored together".
-- `comments` collection, which contains the comment data. Every comment is related to one video document.
-- `products` collection, which contains the product data. Product data is stored separately from the video document because the product data is not always accessed together with the video data. I also try to avoid "unbounded documents" issue in MongoDB.
+- `videos` collection, which contains the video data.
+  - Every video document has a `products` field, which contains list of product's reference oid.
+  - The reason why the product data is stored in the video document is to reduce the number of queries to the database as MongoDB's slogan "data that is accessed together, should be stored together".
+- `comments` collection, which contains the comment data.
+  - Every comment is related to one video document.
+- `products` collection, which contains the product data.
+  - Product data is stored separately from the video document because the product data is not always accessed together with the video data.
+  - I also try to avoid "unbounded documents" issue in MongoDB.
 
 ## Tools ⚒️
 
