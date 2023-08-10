@@ -16,4 +16,8 @@ router
   .route('/register')
   .post(userController.handlePostRegister);
 
+router
+  .route('/users/me')
+  .get(userController.handleGetUser);
+
 export default router;
