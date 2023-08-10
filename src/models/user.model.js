@@ -9,15 +9,18 @@ const userSchema = new mongoose.Schema({
   password: String,
 });
 
-userSchema.methods.generateAuthToken = () => jwt.sign(
-  // eslint-disable-next-line no-underscore-dangle
-  { _id: this._id, username: this.username },
-  config.JWT_SECRET,
-  { expiresIn: '1d' },
-);
+userSchema.methods.generateAuthToken = function () {
+  return jwt.sign(
+    // eslint-disable-next-line no-underscore-dangle
+    { _id: this._id, username: this.username },
+    config.JWT_SECRET,
+    { expiresIn: '1d' },
+  );
+};
 
-userSchema.pre('save', async (next) => {
+userSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
+    console.log(this.password);
     this.password = await bcrypt.hash(this.password, 8);
   }
   next();

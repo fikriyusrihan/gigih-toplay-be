@@ -14,7 +14,11 @@ class UserController {
   handlePostLogin = handlerWrapper(async (req, res) => {
     const { email, password } = req.body;
 
-    const user = this.userService.getUserByEmail(email);
+    const user = await this.userService.getUserByEmail(email);
+    if (!user) {
+      throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
+    }
+
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
@@ -38,12 +42,10 @@ class UserController {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Email already registered');
     }
 
-    const hashedPassword = await bcrypt.hash(password, 8);
-
     const user = await this.userService.createUser({
       username,
       email,
-      password: hashedPassword,
+      password,
     });
 
     const token = user.generateAuthToken();

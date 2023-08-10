@@ -1,6 +1,3 @@
-import httpStatus from 'http-status';
-import ApiError from '../utils/error/ApiError.js';
-
 class UserService {
   constructor(user) {
     this.user = user;
@@ -9,12 +6,7 @@ class UserService {
   }
 
   async getUserByEmail(email) {
-    const user = await this.user.findOne({ email });
-    if (!user) {
-      throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
-    }
-
-    return user;
+    return this.user.findOne({ email });
   }
 
   async createUser(userBody) {
