@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import mongoose from 'mongoose';
 import server from './infrastructures/websocket/index.js';
-import config from './utils/config.js';
+import config from './config/index.js';
 
 console.log('Starting server...');
 

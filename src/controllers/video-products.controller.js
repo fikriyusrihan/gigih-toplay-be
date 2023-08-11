@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import handlerWrapper from '../utils/handlerWrapper.js';
+import handlerWrapper from '../utils/api/handlerWrapper.js';
 
 class VideoProductsController {
   constructor(videoProductsService) {

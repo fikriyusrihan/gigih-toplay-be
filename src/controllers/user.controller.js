@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import jwt from 'jsonwebtoken';
-import handlerWrapper from '../utils/handlerWrapper.js';
+import handlerWrapper from '../utils/api/handlerWrapper.js';
 import ApiError from '../utils/error/ApiError.js';
-import config from '../utils/config.js';
+import config from '../config/index.js';
 
 class UserController {
   constructor(userService) {
