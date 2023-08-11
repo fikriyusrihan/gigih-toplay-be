@@ -56,6 +56,10 @@ There are 3 collections in the database, which are:
   - Product data is stored separately from the video document because the product data is not always accessed together with the video data.
   - I also try to avoid "unbounded documents" issue in MongoDB.
 
+### Database Seeder
+
+Please import the `src/utils/db/tokoplay.products.json` and `src/utils/db/tokoplay.videos.json` files to the database to seed the database with sample data.
+
 ## Tools ⚒️
 
 - [Node.js](https://nodejs.org/en/) (JavaScript Runtime)
