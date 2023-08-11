@@ -58,7 +58,9 @@ There are 3 collections in the database, which are:
 
 ### Database Seeder
 
-Please import the `src/utils/db/tokoplay.products.json` and `src/utils/db/tokoplay.videos.json` files to the database to seed the database with sample data.
+To seed the database, please call the following endpoint:
+- `GET /api/v1/products/seed` - To seed the database with sample product data
+- `GET /api/v1/videos/seed` - To seed the database with sample video data
 
 ## Tools ⚒️
 
