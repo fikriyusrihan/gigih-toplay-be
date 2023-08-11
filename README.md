@@ -3,7 +3,12 @@
 This is a simple RESTful API for Tokopedia Play Clone application. This API is built using Node.js and Express.
 This application is a part of Generasi GIGIH 3.0 Final Project submission at midterm week. Any feedbacks are welcome!
 
+## Table of Contents 📑
+
+
 ## Run the Application ▶️
+
+### Run without Docker 💿
 
 This application requires Node.js and MongoDB to run. Make sure you have installed Node.js, MongoDB and npm on your computer, then do the following steps.
 
@@ -24,6 +29,25 @@ npm install
 node src/index.js
 ```
 
+### Run with Docker 🐳
+This application can also be run using Docker. Make sure you have installed Docker on your computer, then do the following steps.
+
+```bash
+# Move to the workspace directory
+cd workspace
+
+# Clone the repository
+git clone https://github.com/fikriyusrihan/gigih-toplay-be.git
+
+# Move to the application directory
+cd gigih-toplay-be
+
+# Run Docker Compose
+docker-compose up --build
+```
+The application will run on `http://localhost:3080`.
+
+
 ## .env File Configuration ⚙️
 
 This application requires a `.env` file to run. The `.env` file contains the following variables:
@@ -33,7 +57,7 @@ This application requires a `.env` file to run. The `.env` file contains the fol
 ## API Documentation 📑
 
 ### RESTful API Endpoints
-Access the API documentation at `http://localhost:3000/api/v1/docs` when the application is running.
+Access the API documentation at `http://localhost:3080/api/v1/docs` when the application is running.
 The documentation is built using Swagger for ExpressJS. 
 
 ### WebSocket Endpoints
