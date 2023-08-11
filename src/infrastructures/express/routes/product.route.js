@@ -14,6 +14,10 @@ router
   .get(productController.handleGetProducts);
 
 router
+  .route('/seed')
+  .get(productController.handleGetSeedProducts);
+
+router
   .route('/:productId')
   .get(productController.handleGetProductById)
   .put(productController.handlePutProductById)

@@ -1,5 +1,6 @@
 import httpStatus from 'http-status';
 import handlerWrapper from '../utils/api/handlerWrapper.js';
+import seed from '../utils/db/seed.js';
 
 class ProductController {
   constructor(productService) {
@@ -10,6 +11,7 @@ class ProductController {
     this.handleGetProductById = this.handleGetProductById.bind(this);
     this.handlePutProductById = this.handlePutProductById.bind(this);
     this.handleDeleteProductById = this.handleDeleteProductById.bind(this);
+    this.handleGetSeedProducts = this.handleGetSeedProducts.bind(this);
   }
 
   handlePostProduct = handlerWrapper(async (req, res) => {
@@ -83,6 +85,16 @@ class ProductController {
       status: 'success',
       message: 'Product successfully deleted',
       data: product,
+    };
+
+    res.status(httpStatus.OK).json(response);
+  });
+
+  handleGetSeedProducts = handlerWrapper(async (req, res) => {
+    await seed.seedProducts();
+    const response = {
+      status: 'success',
+      message: 'Products successfully seeded',
     };
 
     res.status(httpStatus.OK).json(response);

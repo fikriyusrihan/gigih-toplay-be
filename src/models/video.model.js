@@ -4,6 +4,15 @@ import toJSON from './plugins/toJSON.plugin.js';
 
 const { Schema } = mongoose;
 
+const metaSchema = new Schema({
+  viewers_count: Number,
+});
+
+const streamerSchema = new Schema({
+  username: String,
+  display_name: String,
+});
+
 const videoSchema = new Schema({
   title: {
     type: String,
@@ -19,6 +28,8 @@ const videoSchema = new Schema({
       ref: 'Product',
     },
   ],
+  user: streamerSchema,
+  meta: metaSchema,
 });
 
 videoSchema.plugin(mongoosePaginate);

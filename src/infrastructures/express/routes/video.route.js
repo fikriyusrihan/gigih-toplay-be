@@ -14,6 +14,10 @@ router
   .get(videoController.handleGetVideos);
 
 router
+  .route('/seed')
+  .get(videoController.handleGetSeedVideos);
+
+router
   .route('/:videoId')
   .get(videoController.handleGetVideoById)
   .put(videoController.handlePutVideoById)

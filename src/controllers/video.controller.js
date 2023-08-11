@@ -1,9 +1,17 @@
 import httpStatus from 'http-status';
 import handlerWrapper from '../utils/api/handlerWrapper.js';
+import seed from '../utils/db/seed.js';
 
 class VideoController {
   constructor(videoService) {
     this.videoService = videoService;
+
+    this.handlePostVideo = this.handlePostVideo.bind(this);
+    this.handleGetVideos = this.handleGetVideos.bind(this);
+    this.handleGetVideoById = this.handleGetVideoById.bind(this);
+    this.handlePutVideoById = this.handlePutVideoById.bind(this);
+    this.handleDeleteVideoById = this.handleDeleteVideoById.bind(this);
+    this.handleGetSeedVideos = this.handleGetSeedVideos.bind(this);
   }
 
   handlePostVideo = handlerWrapper(async (req, res) => {
@@ -82,6 +90,16 @@ class VideoController {
       status: 'success',
       message: 'Video successfully deleted',
       data: video,
+    };
+
+    res.status(httpStatus.OK).json(response);
+  });
+
+  handleGetSeedVideos = handlerWrapper(async (req, res) => {
+    await seed.seedVideos();
+    const response = {
+      status: 'success',
+      message: 'Videos successfully seeded',
     };
 
     res.status(httpStatus.OK).json(response);

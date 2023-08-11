@@ -6,6 +6,7 @@ import toJSON from './plugins/toJSON.plugin.js';
 
 const userSchema = new mongoose.Schema({
   username: String,
+  display_name: String,
   email: String,
   password: {
     type: String,
