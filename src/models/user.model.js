@@ -35,3 +35,29 @@ userSchema.plugin(toJSON);
 const User = mongoose.model('User', userSchema);
 
 export default User;
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - username
+ *         - email
+ *         - password
+ *       properties:
+ *         username:
+ *           type: string
+ *           description: The user's username
+ *         email:
+ *           type: string
+ *           description: The user's email
+ *         password:
+ *           type: string
+ *           description: The user's password
+ *       example:
+ *         username: fikriyusrihan
+ *         email: fikriyusrihan@gmail.com
+ *         password: secret
+ */
