@@ -7,7 +7,10 @@ import toJSON from './plugins/toJSON.plugin.js';
 const userSchema = new mongoose.Schema({
   username: String,
   email: String,
-  password: String,
+  password: {
+    type: String,
+    select: false,
+  },
 });
 
 userSchema.methods.generateAuthToken = function () {

@@ -4,6 +4,7 @@ class UserService {
 
     this.getUserById = this.getUserById.bind(this);
     this.getUserByEmail = this.getUserByEmail.bind(this);
+    this.getUsersPasswordById = this.getUsersPasswordById.bind(this);
     this.createUser = this.createUser.bind(this);
   }
 
@@ -13,6 +14,10 @@ class UserService {
 
   async getUserByEmail(email) {
     return this.user.findOne({ email });
+  }
+
+  async getUsersPasswordById(id) {
+    return this.user.findById(id).select('+password');
   }
 
   async createUser(userBody) {

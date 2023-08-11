@@ -22,7 +22,8 @@ class UserController {
       throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
     }
 
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    const userWithPassword = await this.userService.getUsersPasswordById(user.id);
+    const isPasswordMatch = await bcrypt.compare(password, userWithPassword.password);
     if (!isPasswordMatch) {
       throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
     }
