@@ -1,23 +1,23 @@
-/* eslint-disable no-console */
 import mongoose from 'mongoose';
 import server from './infrastructures/websocket/index.js';
 import config from './config/index.js';
+import logger from './utils/logger/index.js';
 
-console.log('Starting server...');
+logger.info('Starting server...');
 
 mongoose.connect(config.MONGO_URI).then(() => {
-  console.log('Connected to MongoDB');
+  logger.info('Connected to MongoDB');
   mongoose.set('debug', true);
 
   server.listen(config.PORT, () => {
-    console.log(`Listening to port ${config.PORT}`);
+    logger.info(`API can be accessed on http://localhost:${config.PORT}/api/v1`);
   });
 });
 
 const exitHandler = () => {
   if (server) {
     server.close(() => {
-      console.info('Server closed');
+      logger.info('Server closed');
       process.exit(1);
     });
   } else {
@@ -26,7 +26,7 @@ const exitHandler = () => {
 };
 
 const unexpectedErrorHandler = (error) => {
-  console.error(error);
+  logger.error(error);
   exitHandler();
 };
 
@@ -34,7 +34,7 @@ process.on('uncaughtException', unexpectedErrorHandler);
 process.on('unhandledRejection', unexpectedErrorHandler);
 
 process.on('SIGTERM', () => {
-  console.info('SIGTERM received');
+  logger.info('SIGTERM received');
   if (server) {
     server.close();
   }

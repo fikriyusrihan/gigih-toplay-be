@@ -1,7 +1,7 @@
-/* eslint-disable no-console */
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import app from '../express/index.js';
+import logger from '../../utils/logger/index.js';
 
 const server = createServer(app);
 const io = new Server(server, {
@@ -12,13 +12,13 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-  console.log('A user connected');
+  logger.info('A user connected to socket.io');
 
   const { videoId } = socket.handshake.query;
   socket.join(videoId);
 
   socket.on('disconnect', () => {
-    console.log('A user disconnected');
+    logger.info('A user disconnected from socket.io');
   });
 });
 
