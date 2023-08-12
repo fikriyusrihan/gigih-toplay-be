@@ -4,7 +4,22 @@ This is a simple RESTful API for Tokopedia Play Clone application. This API is b
 This application is a part of Generasi GIGIH 3.0 Final Project submission at midterm week. Any feedbacks are welcome!
 
 ## Table of Contents 📑
-
+<!-- TOC -->
+* [Tokopedia Play Clone API 🎶](#tokopedia-play-clone-api-)
+  * [Table of Contents 📑](#table-of-contents-)
+  * [Run the Application ▶️](#run-the-application-)
+    * [Run without Docker 💿](#run-without-docker-)
+    * [Run with Docker 🐳](#run-with-docker-)
+  * [.env File Configuration ⚙️](#env-file-configuration-)
+  * [API Documentation 📑](#api-documentation-)
+    * [RESTful API Endpoints](#restful-api-endpoints)
+    * [WebSocket Endpoints](#websocket-endpoints)
+  * [Database Schema 📚](#database-schema-)
+    * [Database Seeder](#database-seeder)
+  * [Tools ⚒️](#tools-)
+  * [Bonus Checklist 📝](#bonus-checklist-)
+  * [Implemented Features 📝](#implemented-features-)
+<!-- TOC -->
 
 ## Run the Application ▶️
 
@@ -94,8 +109,18 @@ To seed the database, please call the following endpoint:
 - [Mongoose](https://mongoosejs.com/) (ODM)
 - [Swagger](https://swagger.io/) (API Documentation)
 - [Postman](https://www.postman.com/) (API Testing)
+- [Docker](https://www.docker.com/) (Containerization)
+- [Socket.io](https://socket.io/) (WebSocket)
 
 ## Bonus Checklist 📝
 - Add authentication to achieve user-specific data ✅
 - Implement websockets to achieve live update of the comments data ✅
 - Implement search feature for videos ✅
+
+## Implemented Features 📝
+- CRUD Products
+- CRUD Videos
+- CRUD Comments
+- Search Videos
+- Live Update Comments
+- Authentication & Registration
